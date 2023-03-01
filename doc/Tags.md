@@ -1,2 +1,2 @@
-mint, safemint, aux, baseURI
+mint, mintSingle, mintBatch, burnBatch
 

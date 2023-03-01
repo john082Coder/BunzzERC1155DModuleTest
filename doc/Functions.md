@@ -1,15 +1,5 @@
 # WRITE(main)
 
-## transferFrom
-Transfer a particular tokenId from the token owner to an certai address if the caller have the permision to transfer it
-
-|Name|Type|Description|Example|Default|
-|--- |---|---|---|---|
-|from|address|The token sender||N/A|
-|to|address|The token receiver||N/A|
-|tokenId|uint256|The id of the token that will be transfered||N/A|
-
-
 ## safeTransferFrom
 Safely transfers the ownership of a given token ID
 
@@ -17,33 +7,28 @@ Safely transfers the ownership of a given token ID
 |--- |---|---|---|---|
 |from|address|The token sender||N/A|
 |to|address|The token receiver||N/A|
-|tokenId|uint256|The id of the token that will be sent||N/A|
-|_data|bytes|Optional data field||N/A|
+|id|uint256|The id of the token that will be sent||N/A|
+|amount|uint256|The amount of the token that will be sent||N/A|
+|data|bytes|Optional data field||N/A|
 
-## safeTransferFrom
-Safely transfers the ownership of a given token ID
+## safeBatchTransferFrom
+Safely transfers the ownership of a given multiple token IDs.
 
 |Name|Type|Description|
 |--- |---|---|
 |from|address|The address of the token sender|
-|to|address|The id of the token that will be receiver|
-|tokenId|uint256|The id of the token that will be sents|
+|to|address|The address of the token receiver|
+|ids|uint256[]|The ids of the token that will be sent|
+|amounts|uint256[]|The amounts of the token that will be sent|
+|data|bytes|Optional data field|
 
-## approve
-Gives an certain address permision to move tokens for the token owner
-
-|Name|Type|Description|
-|--- |---|---|
-|to|address|Account to approve to spend caller balance|
-|tokenId|uint256|Token id that will be approved to be user by other account|
-
-## _setAux
-Sets the auxillary data for `owner`. (e.g. number of whitelist mint slots used).
+## _setURI
+Set base uri of nft token
 
 |Name|Type|Description|
 |--- |---|---|
-|owner|address|Owner address|
-|aux|uint64|Auxillary data slots|
+|newuri|string|The new uri string|
+
 
 ## setApprovalForAll
 
@@ -54,85 +39,92 @@ Sets or unsets the approval of a given operator An operator is allowed to transf
 |operator|address|The account that will be the balance operator|
 |approved|bool|Approval status|
 
-## _safeMint
-Safely mints `quantity` tokens and transfers them to `to`.
-
-|Name|Type|Description|
-|--- |---|---|
-|to|address|Mint to address|
-|quantity|uint256|Mint quantity|
-|_data|bytes memory|Safe mint data|
 
 ## _mint
-Mints `quantity` tokens and transfers them to `to`.
+Mints `amount` tokens of token type `id` and transfers them to `to`.
 
 |Name|Type|Description|
 |--- |---|---|
 |to|address|Mint to address|
-|quantity|uint256|Mint quantity|
+|id|uint256|The id of token which will be minted|
+|amount|uint256|Mint quantity|
+|data|bytes|Optional data field|
 
-## _transfer
-Transfers `tokenId` from `from` to `to`.
+## _mintSingle
+Mints a single token of token type `id` and transfers it to `to`.
 
 |Name|Type|Description|
 |--- |---|---|
-|from|address|Transfer from address|
-|to|address|Transfer to address|
-|tokenId|uint256|Token ID|
+|to|address|Mint to address|
+|id|uint256|The id of token which will be minted|
+
+## _mintBatch
+Mints multiple tokens of token types `ids` and transfers them to `to`.
+
+|Name|Type|Description|
+|--- |---|---|
+|to|address|Mint to address|
+|ids|uint256[]|The ids of tokens which will be minted|
+|amounts|uint256[]|The amounts of tokens which will be minted|
+|data|bytes|Optional data field|
+
 
 ## _burn
-Destorys `tokenId`.
+Destroys `amount` tokens of token type `id` from `from`
 
 |Name|Type|Description|
 |--- |---|---|
-|tokenId|uint256|Token ID|
-|approvalCheck|bool|True for approved|
+|from|address|Burn from address|
+|id|uint256|Token ID which will be burned|
+|amount|uint256|The amount of tokens which will be burned|
 
-## _approve
-Approve `to` to operate on `tokenId`
+## _burnBatch
+Destroys `amount` tokens of token types `ids` from `from`
+`ids` and `amounts` must have the same length.
+|Name|Type|Description|
+|--- |---|---|
+|from|address|Burn from address|
+|ids|uint256[]|Token IDs which will be burned|
+|amounts|uint256[]|The amounts of tokens which will be burned|
+
+## _setApprovalForAll
+
+Approve `operator` to operate on all of `owner` tokens
 
 |Name|Type|Description|
 |--- |---|---|
-|to|address|Approve to address|
-|tokenId|uint256|Token ID|
-|owner|address|Owner address|
+|owner|address|The token owner address|
+|operator|address|The account that will be the balance operator|
+|approved|bool|Approval status|
 
-## _checkContractOnERC721Received
-Internal function to invoke {IERC721Receiver-onERC721Received} on a target contract.
-
-|Name|Type|Description|
-|--- |---|---|
-|from|address|Address representing the previous owner of the given token ID|
-|to|address|Target address that will receive the tokens|
-|tokenId|uint256|ID of the token to be transferred|
-|_data|bytes memory|Optional data to send along with the call|
-
-## _beforeTokenTransfers
-Hook that is called before a set of serially-ordered token ids are about to be transferred. This includes minting.
+## _beforeTokenTransfer
+Hook that is called before any token transfer.
 
 |Name|Type|Description|
 |--- |---|---|
+|operator|address|The account that will be the balance operator|
 |from|address|Transfer from address|
 |to|address|Transfer to address|
-|startTokenId|uint256|Start Token ID|
-|quantity|uint256|Transfer quantity|
+|ids|uint256[]|The array of token ids|
+|amounts|uint256[]|Transfer quantity|
+|data|bytes|Optional data field|
+
+## _afterTokenTransfer
+Hook that is called after any token transfer.
+
+|Name|Type|Description|
+|--- |---|---|
+|operator|address|The account that will be the balance operator|
+|from|address|Transfer from address|
+|to|address|Transfer to address|
+|ids|uint256[]|The array of token ids|
+|amounts|uint256[]|Transfer quantity|
+|data|bytes|Optional data field|
+
+
+
 
 # READ(main)
-
-## _startTokenId
-To change the starting tokenId, please override this function.
-
-No arguments
-
-## totalSupply
-Returns the amount of tokens in existence
-
-No arguments
-
-## _totalMinted
-Returns the total amount of tokens minted in the contract.
-
-No arguments
 
 ## supportsInterface
 Returns a boolean that tells us if the contract supports royalties
@@ -146,84 +138,54 @@ Returns the token amount owned by an address
 
 |Name|Type|Description|
 |--- |---|---|
-|owner|address|The account which you want to check the balance|
+|account|address|The account which you want to check the balance|
+|id|uint256|The token id which you want to check if the account owns it|
 
-## _numberMinted
-Returns the number of tokens minted by `owner`.
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
-
-## _numberBurned
-Returns the number of tokens burned by or on behalf of `owner`.
+## balanceOfBatch
+Returns the token amounts array owned by an address array.
 
 |Name|Type|Description|
 |--- |---|---|
-|owner|address|Owner address|
-
-## _getAux
-Returns the auxillary data for `owner`. (e.g. number of whitelist mint slots used).
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
+|accounts|address[]|The accounts which you want to check the balance|
+|ids|uint256[]|The token ids which you want to check if the account owns it|
 
 
-## _ownershipOf
-Gas spent here starts off proportional to the maximum mint batch size.
-
-|Name|Type|Description|
-|--- |---|---|
-|tokenId|uint256|Token ID|
-
-## ownerOf
+## ownerOfERC721Like
 Retrieves the owner of a token id
 
 |Name|Type|Description|
 |--- |---|---|
 |tokenId|uint256|The id of the token you want to check its owner of|
 
-## name
-Retrieves collection name
+## getOwnershipRecordOffChain
 
-No arguments
+Retrieves the array of owner addresses.
 
-## symbol
-Retrieves collection name
+|Name|Type|Description|
+|--- |---|---|
 
-No arguments
+## getERC721BalanceOffChain
 
-## tokenURI
+Retrives the balance of the owner address.
+
+|Name|Type|Description|
+|--- |---|---|
+|_address|address|The address of the owner|
+
+
+## uri
 Returns the uri of the metadata
 
 |Name|Type|Description|
 |--- |---|---|
 |tokenId|uint256|The id of the token|
 
-## _baseURI
-Base URI for computing {tokenURI}. If set, the resulting URI for each
 
-No arguments
-
-## getApproved
-Gets the approved address for a token ID, or zero if no address set Reverts if the token ID does not exist.
-
-|Name|Type|Description|
-|--- |---|---|
-|tokenId|uint256|The token id you will retrieves the approvals|
 
 ## isApprovedForAll
 Tells whether an operator is approved by a given owner.
 
 |Name|Type|Description|
 |--- |---|---|
-|owner|address|The address of the tokens owner|
+|account|address|The address of the tokens owner|
 |operator|uint256|The account that will get the rights to operate over owner balance|
-
-## _exists
-Returns whether `tokenId` exists.
-
-|Name|Type|Description|
-|--- |---|---|
-|tokenId|uint256|Token ID|

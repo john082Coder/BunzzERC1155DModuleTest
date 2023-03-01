@@ -16,11 +16,11 @@ To use the ERC1155D contract in your project, copy contracts/ERC1155D.sol to you
 
 ## Sample dApp
 - github repo URL
-    https://github.com/john082Coder/BunzzERC721AModuleTest
+    https://github.com/john082Coder/BunzzERC1155DModuleTest
 - simple dapp URL
-    https://bunzz-erc-721-a-module-test.vercel.app/
+    https://bunzz-erc-1155-d-module-test.vercel.app/
 
 
 ---
 ## Review report
-- [JCoder's report](https://docs.google.com/document/d/1aNDviq8lCuUFfnFtqy7gyoiBfVYnKKefL0fum9SEKYI/edit?usp=sharing)
+- [JCoder's report](https://docs.google.com/document/d/109pSvqNu3da9XQjGtpCBWFm_OPME4bx14s4clwGq15c/edit?usp=sharing)

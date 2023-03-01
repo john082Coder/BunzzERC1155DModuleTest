@@ -1,1 +1,0 @@
-Implementing features for handling maxBatchSize and collectionSize

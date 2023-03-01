@@ -1,0 +1,2 @@
+mint, safemint, aux, baseURI
+

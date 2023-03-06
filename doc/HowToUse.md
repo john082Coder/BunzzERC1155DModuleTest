@@ -1,5 +1,5 @@
 ## Preparation before deployment
-1. Developer your own NFT contract which will use ERC1155D.
+1. Develop your own NFT contract which will use ERC1155D.
 
 ## Get started(Operation)
 

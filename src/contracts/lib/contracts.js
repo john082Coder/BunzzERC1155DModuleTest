@@ -24,12 +24,7 @@ export class Contracts {
     this.defaultGasPrice = options.defaultGasPrice;
     console.log("this web3 = ", this.web3);
    
-    this.escrow = new this.web3.eth.Contract(EscrowAbi);
-    this.erc20 = new this.web3.eth.Contract(Erc20Abi);
-
-    this.paymentSplitter = new this.web3.eth.Contract(PaymentSplitterAbi);
-    this.vestingWallet = new this.web3.eth.Contract(VestingWalletAbi);
-    this.erc721A = new this.web3.eth.Contract(Erc721AAbi);
+  
     this.erc1155D = new this.web3.eth.Contract(Erc1155DAbi);
 
 
@@ -45,11 +40,7 @@ export class Contracts {
       else console.error('Contract address not found in network', networkId);
     }
 
-  
-    setProvider(this.escrow, contractAddresses.escrow[networkId]);
-    setProvider(this.paymentSplitter, contractAddresses.paymentSplitter[networkId]);
-    setProvider(this.vestingWallet, contractAddresses.vestingWallet[networkId]);
-    setProvider(this.erc721A, contractAddresses.erc721A[networkId]);
+
     setProvider(this.erc1155D, contractAddresses.erc1155D[networkId]);
    
 
@@ -57,6 +48,6 @@ export class Contracts {
   }
 
   setDefaultAccount(account) {
-    this.escrow.options.from = account;
+    //this.escrow.options.from = account;
   }
 }
